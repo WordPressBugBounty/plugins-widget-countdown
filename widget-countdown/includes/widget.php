@@ -382,7 +382,7 @@ class wpdevart_countdown extends WP_Widget {
 			
 		if(($day_left<=0 && $hourse_left<=0 && $minuts_left<=0 && $seconds_left<=0)){
 			if($parametrs['action_end_time']=='redirect'){
-				$output_js_code="window.location.replace('".$parametrs['redirect_url']."')";
+				$output_js_code="window.location.replace('".esc_url($parametrs['redirect_url'])."')";
 			}
 			elseif($parametrs['action_end_time']=='show_text'){
 				$output_js_code="jQuery('#main_countedown_widget_".self::$id_for_content." .countdown').html('".htmlspecialchars($parametrs['content'])."')";

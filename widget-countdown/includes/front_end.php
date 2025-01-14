@@ -143,7 +143,7 @@ class wpdevart_countdown_front_end{
 			
 		if(($day_left<=0 && $hourse_left<=0 && $minuts_left<=0 && $seconds_left<=0)){
 			if($parametrs_for_countedown['action_end_time']=='redirct'){
-				$output_js_code="window.location.replace('".$parametrs_for_countedown['redirect_url']."')";
+				$output_js_code="window.location.replace('".esc_url($parametrs_for_countedown['redirect_url'])."')";
 			}
 			elseif($parametrs_for_countedown['action_end_time']=='show_text'){
 				$output_js_code="jQuery('#main_countedown_".self::$id_for_content." .countdown').html('".htmlspecialchars($parametrs_for_countedown['content'])."')";
