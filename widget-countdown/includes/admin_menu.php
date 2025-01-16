@@ -44,13 +44,10 @@ class wpdevart_countdown_admin_menu{
 	}
 	/*############################### Insert button function ########################################*/
 	
-	public function wpdevart_countdown_button() {
-	  
-	  $img = $this->plugin_url. 'images/post_button.jpg';
-	
-	  $title = 'Add Countdown';	
-	  $context = '<a class="button thickbox" title="Create countdown and insert in posts/pages"    href="'.admin_url("admin-ajax.php").'?action=wpdevart_countdown_window_manager&height=750&width=640">
-			<span class="wp-media-buttons-icon" style="background: url('.$img.'); background-repeat: no-repeat; background-position: left bottom;"></span>
+	public function wpdevart_countdown_button() {	  
+	  $img = $this->plugin_url. 'images/post_button.jpg';	
+	  $context = '<a class="button thickbox" title="Create countdown and insert in posts/pages"    href="'.esc_url(admin_url("admin-ajax.php")).'?action=wpdevart_countdown_window_manager&height=750&width=640">
+			<span class="wp-media-buttons-icon" style="background: url('.esc_url($img).'); background-repeat: no-repeat; background-position: left bottom;"></span>
 		Add Countdown
 		</a>';  
 	  echo $context;
@@ -335,13 +332,10 @@ class wpdevart_countdown_admin_menu{
                         </td>                
                     </tr>
                 </tfoot>
-            </table>         
-    
-                   
-    
-    <script type="text/javascript">
+            </table>      
+    	<script type="text/javascript">
 	
-	 	var countdown_pro_text="If you want to use this feature upgrade to Countdown Pro"
+		var countdown_pro_text="If you want to use this feature upgrade to Countdown Pro"
        jQuery('#TB_window').css('max-height',(jQuery('#miain_wpdevart_countdown_window_manager').height()+66)+'px');
 	   jQuery('#TB_ajaxContent').css('max-height',(jQuery('#miain_wpdevart_countdown_window_manager').height()+16)+'px');
 	   jQuery('#miain_wpdevart_countdown_window_manager').ready(function(e) {
@@ -441,7 +435,6 @@ class wpdevart_countdown_admin_menu{
                 window.send_to_editor(tagtext);
               	tb_remove()
         }
-
     </script>
     </body>
     </html>
@@ -456,13 +449,21 @@ die;
 		$sub_men_cap=str_replace( ' ', '-', $this->menu_name);
 		$main_page 	 	  = add_menu_page( $this->menu_name, $this->menu_name, 'manage_options', str_replace( ' ', '-', $this->menu_name), array($this, 'main_menu_function'),$this->plugin_url.'images/timer.png');
 		$page_countdown	  =	add_submenu_page($this->menu_name,  $this->menu_name,  $this->menu_name, 'manage_options', str_replace( ' ', '-', $this->menu_name), array($this, 'main_menu_function'));
-		$page_countdown	  = add_submenu_page( $sub_men_cap, 'Featured Plugins', 'Featured Plugins', 'manage_options', 'countdown-featured-plugins', array($this, 'featured_plugins'));
-		if(isset($submenu[$sub_men_cap]))
-			add_submenu_page( $sub_men_cap, "Support or Any Ideas?", "<span style='color:#00ff66' >Support or Any Ideas?</span>", 'manage_options',"any_ideas",array($this, 'any_ideas'),155);
+		$featured_page	  = add_submenu_page( $sub_men_cap, 'Featured Plugins', 'Featured Plugins', 'manage_options', 'countdown-featured-plugins', array($this, 'featured_plugins'));
+		$featured_theme_page = add_submenu_page($this->menu_name, "Featured Themes", "Featured Themes", 'read', "countdown-featured_themes", array($this, 'featured_themes'));
+        $hire_expert = add_submenu_page($this->menu_name, 'Hire an Expert', '<span style="color:#00ff66" >Hire an Expert</span>', 'read', "countdown-hire_expert", array($this, 'hire_expert'));		
 		add_action('admin_print_styles-' .$main_page, array($this,'menu_requeried_scripts'));
 		add_action('admin_print_styles-' .$page_countdown, array($this,'menu_requeried_scripts'));	
+		add_action('admin_print_styles-' . $featured_page, array($this, 'featured_plugins_js_css'));
+        add_action('admin_print_styles-' . $featured_theme_page, array($this, 'featured_themes_js_css'));
+        add_action('admin_print_styles-' . $hire_expert, array($this, 'hire_expert_js_css'));
+
 		if(isset($submenu[$sub_men_cap]))
-			$submenu[$sub_men_cap][2][2]=wpdevart_countdown_support_url;
+			add_submenu_page( $sub_men_cap, "Support or Any Ideas?", "<span style='color:#00ff66' >Support or Any Ideas?</span>", 'manage_options',"any_ideas",array($this, 'any_ideas'),155);
+		if (isset($submenu[$sub_men_cap])) {
+			$count_pages = count($submenu[$sub_men_cap])-1;
+			$submenu[$sub_men_cap][$count_pages][2] = wpdevart_countdown_support_url;
+		}
 	}
 	
 	/*###################### Any ideas function ##################*/	
@@ -474,7 +475,19 @@ die;
 	
 	public function menu_requeried_scripts(){
 		wp_enqueue_style('wpdevart-countdown-admin-style');
-	}	
+	}
+
+	public function featured_plugins_js_css() {
+        wp_enqueue_style('wpda_countdown_featured_page_css', $this->plugin_url . 'includes/style/featured_plugins_css.css');
+    }
+
+    public function featured_themes_js_css() {
+        wp_enqueue_style('wpda_countdown_featured_themes_page_css', $this->plugin_url . 'includes/style/featured_themes_css.css');
+    }
+
+    public function hire_expert_js_css() {
+        wp_enqueue_style('wpda_countdown_hire_expert_css', $this->plugin_url . 'includes/style/hire_expert.css');
+    }
 	
 	/*###################### Main menu function ##################*/	
 	
@@ -531,7 +544,7 @@ die;
 		}
 		.wpdevart_support:before {
 			content: "";
-			background: url(<?php echo $this->plugin_url ?>images/support-white.png) no-repeat;
+			background: url(<?php echo esc_url($this->plugin_url) ?>images/support-white.png) no-repeat;
 			width: 25px;
 			height: 25px;
 			background-size: 25px;
@@ -585,223 +598,293 @@ die;
 	<?php 
 	}
 
-	/*############################### Featured plugins function ########################################*/
-		public function featured_plugins(){
+	public function hire_expert() {
+        $plugins_array = array(
+            'custom_site_dev' => array(
+                'image_url' => $this->plugin_url.'images/hire_expert/1.png',
+                'title' => 'Custom WordPress Development',
+                'description' => 'Hire a WordPress expert and make any custom development for your WordPress website.',
+            ),
+            'custom_plug_dev' => array(
+                'image_url' => $this->plugin_url.'images/hire_expert/2.png',
+                'title' => 'WordPress Plugin Development',
+                'description' => 'Our developers can create any WordPress plugin from zero. Also, they can customize any plugin and add any functionality.',
+            ),
+            'custom_theme_dev' => array(
+                'image_url' => $this->plugin_url.'images/hire_expert/3.png',
+                'title' => 'WordPress Theme Development',
+                'description' => 'If you need an unique theme or any customizations for a ready theme, then our developers are ready.',
+            ),
+            'custom_theme_inst' => array(
+                'image_url' => $this->plugin_url.'images/hire_expert/4.png',
+                'title' => 'WordPress Theme Installation and Customization',
+                'description' => 'If you need a theme installation and configuration, then just let us know, our experts configure it.',
+            ),
+            'gen_wp_speed' => array(
+                'image_url' => $this->plugin_url.'images/hire_expert/5.png',
+                'title' => 'General WordPress Support',
+                'description' => 'Our developers can provide general support. If you have any problem with your website, then our experts are ready to help.',
+            ),
+            'speed_op' => array(
+                'image_url' => $this->plugin_url.'images/hire_expert/6.png',
+                'title' => 'WordPress Speed Optimization',
+                'description' => 'Hire an expert from WpDevArt and let him take care of your website speed optimization.',
+            ),
+            'mig_serv' => array(
+                'image_url' => $this->plugin_url.'images/hire_expert/7.png',
+                'title' => 'WordPress Migration Services',
+                'description' => 'Our developers can migrate websites from any platform to WordPress.',
+            ),
+            'page_seo' => array(
+                'image_url' => $this->plugin_url.'images/hire_expert/8.png',
+                'title' => 'WordPress SEO',
+                'description' => 'SEO is an important part of any website. Hire an expert and he will organize the SEO of your website.',
+            ),
+        );
+        $content = '';
+        $content .= '<h1 class="wpda_hire_exp_h1"> Hire an Expert from WpDevArt </h1>';
+        $content .= '<div class="hire_expert_main">';
+        foreach ($plugins_array as $key => $plugin) {
+            $content .= '<div class="wpdevart_hire_main"><a target="_blank" class="wpda_hire_buklet" href="https://wpdevart.com/hire-a-wordpress-developer-online-submit-form/">';
+            $content .= '<div class="wpdevart_hire_image"><img src="' . $plugin["image_url"] . '"></div>';
+            $content .= '<div class="wpdevart_hire_information">';
+            $content .= '<div class="wpdevart_hire_title">' . $plugin["title"] . '</div>';
+            $content .= '<p class="wpdevart_hire_description">' . $plugin["description"] . '</p>';
+            $content .= '</div></a></div>';
+        }
+        $content .= '<div><a target="_blank" class="wpda_hire_button" href="https://wpdevart.com/hire-a-wordpress-developer-online-submit-form/">Hire an Expert</a></div>';
+        $content .= '</div>';
+        echo $content;
+    }
+
+    public function featured_plugins() {
 		$plugins_array=array(
- 			'Countdown_Extended'=>array(
-						'image_url'		=>	$this->plugin_url.'images/featured_plugins/icon-128x128.png',
-						'site_url'		=>	'https://wpdevart.com/wordpress-countdown-extended-version/',
-						'title'			=>	'WordPress Countdown Extended',
-						'description'	=>	'WordPress Countdown Extended (CountUp, WooCommerce Sales Timer) is a great tool. You can easily create countdown and countup timers for WordPress your website.'
-						),	
-			'gallery_album'=>array(
-						'image_url'		=>	$this->plugin_url.'images/featured_plugins/gallery-album-icon.png',
-						'site_url'		=>	'https://wpdevart.com/wordpress-gallery-plugin/',
-						'title'			=>	'WordPress Gallery plugin',
-						'description'	=>	'Gallery plugin is an useful tool that will help you to create Galleries and Albums. Try our nice Gallery views and awesome animations.'
-						),		
-			'coming_soon'=>array(
-						'image_url'		=>	$this->plugin_url.'images/featured_plugins/coming_soon.png',
-						'site_url'		=>	'https://wpdevart.com/wordpress-coming-soon-plugin/',
-						'title'			=>	'Coming soon and Maintenance mode',
-						'description'	=>	'Coming soon and Maintenance mode plugin is an awesome tool to show your visitors that you are working on your website to make it better.'
-						),
-			'Contact forms'=>array(
-						'image_url'		=>	$this->plugin_url.'images/featured_plugins/contact_forms.png',
-						'site_url'		=>	'https://wpdevart.com/wordpress-contact-form-plugin/',
-						'title'			=>	'Contact Form Builder',
-						'description'	=>	'Contact Form Builder plugin is an handy tool for creating different types of contact forms on your WordPress websites.'
-						),	
-			'Booking Calendar'=>array(
-						'image_url'		=>	$this->plugin_url.'images/featured_plugins/Booking_calendar_featured.png',
-						'site_url'		=>	'https://wpdevart.com/wordpress-booking-calendar-plugin/',
-						'title'			=>	'WordPress Booking Calendar',
-						'description'	=>	'WordPress Booking Calendar plugin is an awesome tool to create a booking system for your website. Create booking calendars in a few minutes.'
-						),
-			'Pricing Table'=>array(
-						'image_url'		=>	$this->plugin_url.'images/featured_plugins/Pricing-table.png',
-						'site_url'		=>	'https://wpdevart.com/wordpress-pricing-table-plugin/',
-						'title'			=>	'WordPress Pricing Table',
-						'description'	=>	'WordPress Pricing Table plugin is a nice tool for creating beautiful pricing tables. Use WpDevArt pricing table themes and create tables just in a few minutes.'
-						),
-			'chart'=>array(
-						'image_url'		=>	$this->plugin_url.'images/featured_plugins/chart-featured.png',
-						'site_url'		=>	'https://wpdevart.com/wordpress-organization-chart-plugin/',
-						'title'			=>	'WordPress Organization Chart',
-						'description'	=>	'WordPress organization chart plugin is a great tool for adding organizational charts to your WordPress websites.'
-						),						
-			'youtube'=>array(
-						'image_url'		=>	$this->plugin_url.'images/featured_plugins/youtube.png',
-						'site_url'		=>	'https://wpdevart.com/wordpress-youtube-embed-plugin',
-						'title'			=>	'WordPress YouTube Embed',
-						'description'	=>	'YouTube Embed plugin is an convenient tool for adding videos to your website. Use YouTube Embed plugin for adding YouTube videos in posts/pages, widgets.'
-						),
-            'facebook-comments'=>array(
-						'image_url'		=>	$this->plugin_url.'images/featured_plugins/facebook-comments-icon.png',
-						'site_url'		=>	'https://wpdevart.com/wordpress-facebook-comments-plugin/',
-						'title'			=>	'Wpdevart Social comments',
-						'description'	=>	'WordPress Facebook comments plugin will help you to display Facebook Comments on your website. You can use Facebook Comments on your pages/posts.'
-						),						
-			'lightbox'=>array(
-						'image_url'		=>	$this->plugin_url.'images/featured_plugins/lightbox.png',
-						'site_url'		=>	'https://wpdevart.com/wordpress-lightbox-plugin',
-						'title'			=>	'WordPress Lightbox plugin',
-						'description'	=>	'WordPress Lightbox Popup is an high customizable and responsive plugin for displaying images and videos in popup.'
-						),
-			'facebook'=>array(
-						'image_url'		=>	$this->plugin_url.'images/featured_plugins/facebook.png',
-						'site_url'		=>	'https://wpdevart.com/wordpress-facebook-like-box-plugin',
-						'title'			=>	'Social Like Box',
-						'description'	=>	'Facebook like box plugin will help you to display Facebook like box on your website, just add Facebook Like box widget to sidebar or insert it into posts/pages and use it.'
-						),
-			'vertical_menu'=>array(
-						'image_url'		=>	$this->plugin_url.'images/featured_plugins/Vertical-menu.png',
-						'site_url'		=>	'https://wpdevart.com/wordpress-vertical-menu-plugin/',
-						'title'			=>	'WordPress Vertical Menu',
-						'description'	=>	'WordPress Vertical Menu is a handy tool for adding nice vertical menus. You can add icons for your website vertical menus using our plugin.'
-						),						
-			'duplicate_page'=>array(
-						'image_url'		=>	$this->plugin_url.'images/featured_plugins/featured-duplicate.png',
-						'site_url'		=>	'https://wpdevart.com/wordpress-duplicate-page-plugin-easily-clone-posts-and-pages/',
-						'title'			=>	'WordPress Duplicate page',
-						'description'	=>	'Duplicate Page or Post is a great tool that allows duplicating pages and posts. Now you can do it with one click.'
-						),						
-						
-			
-		);
-		?>
-        <style>
-         .featured_plugin_main{
-			background-color: #ffffff;
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			box-sizing: border-box;
-			float: left;
-			margin-right: 30px;
-			margin-bottom: 30px;
-			width: calc((100% - 90px)/3);
-			border-radius: 15px;
-			box-shadow: 1px 1px 7px rgba(0,0,0,0.04);
-			padding: 20px 25px;
-			text-align: center;
-			-webkit-transition:-webkit-transform 0.3s;
-			-moz-transition:-moz-transform 0.3s;
-			transition:transform 0.3s;   
-			-webkit-transform: translateY(0);
-			-moz-transform: translateY0);
-			transform: translateY(0);
-			min-height: 420px;
-		 }
-		.featured_plugin_main:hover{
-			-webkit-transform: translateY(-2px);
-			-moz-transform: translateY(-2px);
-			transform: translateY(-2px);
-		 }
-		.featured_plugin_image{
-			max-width: 128px;
-			margin: 0 auto;
-		}
-		.blue_button{
-    display: inline-block;
-    font-size: 15px;
-    text-decoration: none;
-    border-radius: 5px;
-    color: #ffffff;
-    font-weight: 400;
-    opacity: 1;
-    -webkit-transition: opacity 0.3s;
-    -moz-transition: opacity 0.3s;
-    transition: opacity 0.3s;
-    background-color: #7052fb;
-    padding: 10px 22px;
-    text-transform: uppercase;
-		}
-		.blue_button:hover,
-		.blue_button:focus {
-			color:#ffffff;
-			box-shadow: none;
-			outline: none;
-		}
-		.featured_plugin_image img{
-			max-width: 100%;
-		}
-		.featured_plugin_image a{
-		  display: inline-block;
-		}
-		.featured_plugin_information{	
+			'Countdown_Extended'=>array(
+					   'image_url'		=>	$this->plugin_url.'images/featured_plugins/icon-128x128.png',
+					   'site_url'		=>	'https://wpdevart.com/wordpress-countdown-extended-version/',
+					   'title'			=>	'WordPress Countdown Extended',
+					   'description'	=>	'WordPress Countdown Extended (CountUp, WooCommerce Sales Timer) is a great tool. You can easily create countdown and countup timers for WordPress your website.'
+					   ),	
+		   'gallery_album'=>array(
+					   'image_url'		=>	$this->plugin_url.'images/featured_plugins/gallery-album-icon.png',
+					   'site_url'		=>	'https://wpdevart.com/wordpress-gallery-plugin/',
+					   'title'			=>	'WordPress Gallery plugin',
+					   'description'	=>	'Gallery plugin is an useful tool that will help you to create Galleries and Albums. Try our nice Gallery views and awesome animations.'
+					   ),		
+		   'coming_soon'=>array(
+					   'image_url'		=>	$this->plugin_url.'images/featured_plugins/coming_soon.png',
+					   'site_url'		=>	'https://wpdevart.com/wordpress-coming-soon-plugin/',
+					   'title'			=>	'Coming soon and Maintenance mode',
+					   'description'	=>	'Coming soon and Maintenance mode plugin is an awesome tool to show your visitors that you are working on your website to make it better.'
+					   ),
+		   'Contact forms'=>array(
+					   'image_url'		=>	$this->plugin_url.'images/featured_plugins/contact_forms.png',
+					   'site_url'		=>	'https://wpdevart.com/wordpress-contact-form-plugin/',
+					   'title'			=>	'Contact Form Builder',
+					   'description'	=>	'Contact Form Builder plugin is an handy tool for creating different types of contact forms on your WordPress websites.'
+					   ),	
+		   'Booking Calendar'=>array(
+					   'image_url'		=>	$this->plugin_url.'images/featured_plugins/Booking_calendar_featured.png',
+					   'site_url'		=>	'https://wpdevart.com/wordpress-booking-calendar-plugin/',
+					   'title'			=>	'WordPress Booking Calendar',
+					   'description'	=>	'WordPress Booking Calendar plugin is an awesome tool to create a booking system for your website. Create booking calendars in a few minutes.'
+					   ),
+		   'Pricing Table'=>array(
+					   'image_url'		=>	$this->plugin_url.'images/featured_plugins/Pricing-table.png',
+					   'site_url'		=>	'https://wpdevart.com/wordpress-pricing-table-plugin/',
+					   'title'			=>	'WordPress Pricing Table',
+					   'description'	=>	'WordPress Pricing Table plugin is a nice tool for creating beautiful pricing tables. Use WpDevArt pricing table themes and create tables just in a few minutes.'
+					   ),
+		   'chart'=>array(
+					   'image_url'		=>	$this->plugin_url.'images/featured_plugins/chart-featured.png',
+					   'site_url'		=>	'https://wpdevart.com/wordpress-organization-chart-plugin/',
+					   'title'			=>	'WordPress Organization Chart',
+					   'description'	=>	'WordPress organization chart plugin is a great tool for adding organizational charts to your WordPress websites.'
+					   ),						
+		   'youtube'=>array(
+					   'image_url'		=>	$this->plugin_url.'images/featured_plugins/youtube.png',
+					   'site_url'		=>	'https://wpdevart.com/wordpress-youtube-embed-plugin',
+					   'title'			=>	'WordPress YouTube Embed',
+					   'description'	=>	'YouTube Embed plugin is an convenient tool for adding videos to your website. Use YouTube Embed plugin for adding YouTube videos in posts/pages, widgets.'
+					   ),
+		   'facebook-comments'=>array(
+					   'image_url'		=>	$this->plugin_url.'images/featured_plugins/facebook-comments-icon.png',
+					   'site_url'		=>	'https://wpdevart.com/wordpress-facebook-comments-plugin/',
+					   'title'			=>	'Wpdevart Social comments',
+					   'description'	=>	'WordPress Facebook comments plugin will help you to display Facebook Comments on your website. You can use Facebook Comments on your pages/posts.'
+					   ),						
+		   'lightbox'=>array(
+					   'image_url'		=>	$this->plugin_url.'images/featured_plugins/lightbox.png',
+					   'site_url'		=>	'https://wpdevart.com/wordpress-lightbox-plugin',
+					   'title'			=>	'WordPress Lightbox plugin',
+					   'description'	=>	'WordPress Lightbox Popup is an high customizable and responsive plugin for displaying images and videos in popup.'
+					   ),
+		   'facebook'=>array(
+					   'image_url'		=>	$this->plugin_url.'images/featured_plugins/facebook.png',
+					   'site_url'		=>	'https://wpdevart.com/wordpress-facebook-like-box-plugin',
+					   'title'			=>	'Social Like Box',
+					   'description'	=>	'Facebook like box plugin will help you to display Facebook like box on your website, just add Facebook Like box widget to sidebar or insert it into posts/pages and use it.'
+					   ),
+		   'vertical_menu'=>array(
+					   'image_url'		=>	$this->plugin_url.'images/featured_plugins/Vertical-menu.png',
+					   'site_url'		=>	'https://wpdevart.com/wordpress-vertical-menu-plugin/',
+					   'title'			=>	'WordPress Vertical Menu',
+					   'description'	=>	'WordPress Vertical Menu is a handy tool for adding nice vertical menus. You can add icons for your website vertical menus using our plugin.'
+					   ),						
+		   'duplicate_page'=>array(
+					   'image_url'		=>	$this->plugin_url.'images/featured_plugins/featured-duplicate.png',
+					   'site_url'		=>	'https://wpdevart.com/wordpress-duplicate-page-plugin-easily-clone-posts-and-pages/',
+					   'title'			=>	'WordPress Duplicate page',
+					   'description'	=>	'Duplicate Page or Post is a great tool that allows duplicating pages and posts. Now you can do it with one click.'
+					   ),	
+	   );
+        $html = '';
+        $html .= '<h1 class="wpda_featured_plugins_title">Featured Plugins</h1>';
+        foreach ($plugins_array as $plugin) {
+            $html .= '<div class="featured_plugin_main">';
+            $html .= '<div class="featured_plugin_image"><a target="_blank" href="' . $plugin['site_url'] . '"><img src="' . $plugin['image_url'] . '"></a></div>';
+            $html .= '<div class="featured_plugin_information">';
+            $html .= '<div class="featured_plugin_title">';
+            $html .= '<h4><a target="_blank" href="' . $plugin['site_url'] . '">' . $plugin['title'] . '</a></h4>';
+            $html .= '</div>';
+            $html .= '<p class="featured_plugin_description">' . $plugin['description'] . '</p>';
+            $html .= '<a target="_blank" href="' . $plugin['site_url'] . '" class="blue_button">Check The Plugin</a>';
+            $html .= '</div>';
+            $html .= '<div style="clear:both"></div>';
+            $html .= '</div>';
+        }
+        echo $html;
+    }
 
-		}
-		.featured_plugin_title{
-	color: #7052fb;
-	font-size: 18px;
-	display: inline-block;
-		}
-		.featured_plugin_title a{
-	text-decoration:none;
-	font-size: 19px;
-    line-height: 22px;
-	color: #7052fb;
-					
-		}
-		.featured_plugin_title h4{
-			margin: 0px;
-			margin-top: 20px;		
-			min-height: 44px;	
-		}
-		.featured_plugin_description{
-			font-size: 14px;
-				min-height: 63px;
-		}
-		@media screen and (max-width: 1460px){
-			.featured_plugin_main {
-				margin-right: 20px;
-				margin-bottom: 20px;
-				width: calc((100% - 60px)/3);
-				padding: 20px 10px;
-			}
-			.featured_plugin_description {
-				font-size: 13px;
-				min-height: 63px;
-			}
-		}
-		@media screen and (max-width: 1279px){
-			.featured_plugin_main {
-				width: calc((100% - 60px)/2);
-				padding: 20px 20px;
-				min-height: 420px;
-			}	
-		}
-		@media screen and (max-width: 768px){
-			.featured_plugin_main {
-				width: calc(100% - 30px);
-				padding: 20px 20px;
-				min-height: auto;
-				margin: 0 auto 20px;
-				float: none;
-			}	
-			.featured_plugin_title h4{
-				min-height: auto;
-			}	
-			.featured_plugin_description{
-				min-height: auto;
-					font-size: 14px;
-			}	
-		}
+    public function featured_themes() {
+        $themes_array = array(
+            'tistore' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/tistore.jpg',
+                'site_url' => 'https://wpdevart.com/tistore-best-ecommerce-theme-for-wordpress/',
+                'title' => 'TiStore',
+                'description' => 'TiStore is one of the best eCommerce WordPress themes that is fully integrated with WooCommerce.',
+            ),
+            'megastore' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/megastore.jpg',
+                'site_url' => 'https://wpdevart.com/megastore-best-woocommerce-theme-for-wordpress/',
+                'title' => 'MegaStore',
+                'description' => 'MegaStore is one of the best WooCommerce themes available for WordPress.',
+            ),
+            'jevstore' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/jevstore.jpg',
+                'site_url' => 'https://wpdevart.com/jewstore-best-wordpress-jewelry-store-theme/',
+                'title' => 'JewStore',
+                'description' => 'JewStore is a WordPress WooCommerce theme designed for jewelry stores and blogs.',
+            ),
+            'cakeshop' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/cakeshop.jpg',
+                'site_url' => 'https://wpdevart.com/wordpress-cake-shop-theme/',
+                'title' => 'Cake Shop',
+                'description' => 'WordPress Cake Shop is a multi-purpose WooCommerce-ready theme.',
+            ),
+            'flowershop' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/flowershop.jpg',
+                'site_url' => 'https://wpdevart.com/wordpress-flower-shop-theme/',
+                'title' => 'Flower Shop',
+                'description' => 'WordPress Flower Shop is a responsive and WooCommerce-ready theme developed by our team.',
+            ),
+            'coffeeshop' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/coffeeshop.jpg',
+                'site_url' => 'https://wpdevart.com/wordpress-coffee-shop-cafe-theme/',
+                'title' => 'Coffee Shop',
+                'description' => 'It is a responsive and user-friendly theme designed specifically for coffee shop or cafe websites.',
+            ),
+            'weddingplanner' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/weddingplanner.jpg',
+                'site_url' => 'https://wpdevart.com/wordpress-wedding-planner-theme/',
+                'title' => 'Wedding Planner',
+                'description' => 'Wedding Planner is a responsive WordPress theme that is fully integrated with WooCommerce.',
+            ),
+            'Amberd' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/Amberd.jpg',
+                'site_url' => 'https://wpdevart.com/amberd-wordpress-online-store-theme/',
+                'title' => 'AmBerd',
+                'description' => 'AmBerd has all the necessary features and functionality to create a beautiful WordPress website.',
+            ),
+            'bookshop' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/bookshop.jpg',
+                'site_url' => 'https://wpdevart.com/wordpress-book-shop-theme/',
+                'title' => 'Book Shop',
+                'description' => 'The Book Shop WordPress theme is a fresh and well-designed theme for creating bookstores or book blogs.',
+            ),
+            'ecommercemodernstore' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/ecommercemodernstore.jpg',
+                'site_url' => 'https://wpdevart.com/wordpress-ecommerce-modern-store-theme/',
+                'title' => 'Ecommerce Modern Store',
+                'description' => 'WordPress Ecommerce Modern Store theme is one of the best solutions if you want to create an online store.',
+            ),
+            'electrostore' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/electrostore.jpg',
+                'site_url' => 'https://wpdevart.com/wordpress-electronics-store-electro-theme/',
+                'title' => 'ElectroStore',
+                'description' => 'This is a responsive and WooCommerce-ready electronic store theme.',
+            ),
+            'jewelryshop' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/jewelryshop.jpg',
+                'site_url' => 'https://wpdevart.com/wordpress-jewelry-shop-theme/',
+                'title' => 'Jewelry Shop',
+                'description' => 'WordPress Jewelry Shop theme is designed specifically for jewelry websites, but of course, you can use this theme for other types of websites as well.',
+            ),
+            'fashionshop' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/fashionshop.jpg',
+                'site_url' => 'https://wpdevart.com/wordpress-fashion-shop-theme/',
+                'title' => 'Fashion Shop',
+                'description' => 'The Fashion Shop is one of the best responsive WordPress WooCommerce themes for creating a fashion store website.',
+            ),
+            'barbershop' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/barbershop.jpg',
+                'site_url' => 'https://wpdevart.com/wordpress-barbershop-theme/',
+                'title' => 'Barbershop',
+                'description' => 'WordPress Barbershop is another responsive and functional theme developed by our team.',
+            ),
+            'furniturestore' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/furniturestore.jpg',
+                'site_url' => 'https://wpdevart.com/wordpress-furniture-store-theme/',
+                'title' => 'Furniture Store',
+                'description' => 'This is a great option to quickly create an online store using our theme and the WooCommerce plugin. Our theme is fully integrated with WooCommerce.',
+            ),
+            'clothing' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/clothing.jpg',
+                'site_url' => 'https://wpdevart.com/tistore-best-ecommerce-theme-for-wordpress/',
+                'title' => 'Clothing',
+                'description' => 'The Clothing WordPress theme is one of the best responsive eCommerce themes available for WordPress.',
+            ),
+            'weddingphotography' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/weddingphotography.jpg',
+                'site_url' => 'https://wpdevart.com/wordpress-wedding-photography-theme/',
+                'title' => 'Wedding Photography',
+                'description' => 'WordPress Wedding Photography theme is one of the best themes specially designed for wedding photographers or photography companies.',
+            ),
+            'petshop' => array(
+                'image_url' => $this->plugin_url.'images/featured_themes/petshop.jpg',
+                'site_url' => 'https://wpdevart.com/wordpress-pet-shop-theme/',
+                'title' => 'Pet Shop',
+                'description' => 'Pet Shop is a powerful and well-designed WooCommerce WordPress theme.',
+            ),
 
-        </style>
-      
-		<h1 style="text-align: center;font-size: 50px;font-weight: 700;color: #2b2350;margin: 20px auto 25px;line-height: 1.2;">Featured Plugins</h1>
-		<?php foreach($plugins_array as $key=>$plugin) { ?>
-		<div class="featured_plugin_main">
-			<div class="featured_plugin_image"><a target="_blank" href="<?php echo $plugin['site_url'] ?>"><img src="<?php echo $plugin['image_url'] ?>"></a></div>
-			<div class="featured_plugin_information">
-				<div class="featured_plugin_title"><h4><a target="_blank" href="<?php echo $plugin['site_url'] ?>"><?php echo $plugin['title'] ?></a></h4></div>
-				<p class="featured_plugin_description"><?php echo $plugin['description'] ?></p>
-				<a target="_blank" href="<?php echo $plugin['site_url'] ?>" class="blue_button">Check The Plugin</a>
-			</div>
-			<div style="clear:both"></div>                
-		</div>
-		<?php } 
-	
-	}	
+        );
+        $html = '';
+        $html .= '<div class="wpdevart_main"><h1 class="wpda_featured_themes_title">Featured Themes</h1>';
+        $html .= '<div class="div-container">';
+        foreach ($themes_array as $theme) {
+            $html .= '<div class="theme" data-slug="tistore"><div class="theme-img">';                
+            $html .= ' <img src="'.$theme['image_url'].'" alt="' . $theme['title'] . '">';
+            $html .= '</div>';
+            $html .= '<div class="theme-description">' . $theme['description'] . '</div>';
+            $html .= '<div class="theme-name-container">'; 
+            $html .= '<h2 class="theme-name">' . $theme['title'] . '</h2>';
+            $html .= '<div class="theme-actions">';
+            $html .= '<a target="_blank" aria-label="Check theme" class="button button-primary load-customize" href="' . $theme['site_url'] . '">Check Theme</a>';
+            $html .= '</div></div></div>';
+            
+            
+        }
+        $html .= '</div></div>';
+        echo $html;
+    }	
 }

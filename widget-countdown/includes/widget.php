@@ -36,7 +36,6 @@ class wpdevart_countdown extends WP_Widget {
 /*############################### Update settings Function #######################################*/	
 	
     	function update($new_instance, $old_instance) {	
-		extract( $args );
 		$instance['title'] = strip_tags($new_instance['title']);    
 		$instance['text_for_day'] 			= $new_instance['text_for_day'];
 		$instance['text_for_hour'] 			= $new_instance['text_for_hour'];

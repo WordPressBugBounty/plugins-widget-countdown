@@ -7,6 +7,9 @@
 	min-width: 120px;
 	display: inline-block;
 }
+.wpdevart_countdown_main_collapsible_element td{
+    border: 0px;
+}
 .wpdevart_gutenberg_timer_main_div select{
 	min-width: 120px;
 }

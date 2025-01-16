@@ -1,7 +1,5 @@
-( function( blocks, editor, i18n, element, components, _ ) {
+( function( blocks, i18n, element, components, _ ) {
 	var el = element.createElement;
-	var RichText = editor.RichText;
-	var MediaUpload = editor.MediaUpload;
 	var currentdate = new Date();
 	var pro_feature_text="If you want to use this feature upgrade to Countdown Pro";
 	
@@ -151,9 +149,7 @@
 			if(props.attributes.countdown_start_date===""){
 				props.setAttributes({countdown_start_date:(parseInt(Date.now()/1000)+"")})			
 			}
-			return el( 'span', { },create_open_hide_block()
-					 
-					 );
+			return el( 'span', { },create_open_hide_block());
 			
 			function create_open_hide_block(){
 				var open_or_close_class="";
@@ -456,7 +452,6 @@
 	} )
 } )(
 	window.wp.blocks,
-	window.wp.editor,
 	window.wp.i18n,
 	window.wp.element,
 	window.wp.components,
