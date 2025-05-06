@@ -98,10 +98,10 @@ class wpdevart_countdown_front_end{
 
 			
 			$output_html.='<div class="countdown">
-				<span class="element_conteiner"><span  class="days time_left">'.$day_left.'</span><span class="time_description">'.$curent_value['text_for_day'].'</span></span>
-				<span class="element_conteiner"><span  class="hourse time_left">'.$hourse_left.'</span><span class="time_description">'.$curent_value['text_for_hour'].'</span></span>
-				<span class="element_conteiner"><span  class="minutes time_left">'.$minuts_left.'</span><span class="time_description">'.$curent_value['text_for_minut'].'</span></span>
-				<span class="element_conteiner"><span  class="secondes time_left">'.$seconds_left.'</span><span class="time_description">'.$curent_value['text_for_second'].'</span></span>
+				<span class="element_conteiner"><span  class="days time_left">'.$day_left.'</span><span class="time_description">'.esc_html($curent_value['text_for_day']).'</span></span>
+				<span class="element_conteiner"><span  class="hourse time_left">'.$hourse_left.'</span><span class="time_description">'.esc_html($curent_value['text_for_hour']).'</span></span>
+				<span class="element_conteiner"><span  class="minutes time_left">'.$minuts_left.'</span><span class="time_description">'.esc_html($curent_value['text_for_minut']).'</span></span>
+				<span class="element_conteiner"><span  class="secondes time_left">'.$seconds_left.'</span><span class="time_description">'.esc_html($curent_value['text_for_second']).'</span></span>
 			</div>';
 		$output_html.='</div>';
 		$output_html.='<script>'.$this->wpdevart_countdown_javascript($curent_value).'</script><style>'.$this->wpdevart_countdown_css($curent_value).'</style>';

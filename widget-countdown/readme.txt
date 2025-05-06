@@ -4,7 +4,7 @@ Donate link: http://wpdevart.com/wordpress-countdown-plugin
 Tags: countdown, countdown widget, countdown timer,  countdown system, countdown generator
 Requires at least: 3.3.0
 Tested up to: 6.7
-Stable tag: 2.7.4
+Stable tag: 2.7.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -121,6 +121,10 @@ Yes dear users, you need to pay only one time for pro version, it's lifetime pla
 5.  Back-end 
 
 == Changelog ==
+
+= 2.7.5 =
+
+*  bug fixed.
 
 = 2.7.4 =
 

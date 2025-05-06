@@ -367,10 +367,10 @@ class wpdevart_countdown extends WP_Widget {
 		
 		$output_html.='<div class="content_countdown" id="main_countedown_widget_'.self::$id_for_content.'">';
 		$output_html.='<div class="countdown">
-			<span class="element_conteiner"><span  class="days time_left">'.$day_left.'</span><span class="time_description">'.$parametrs['text_for_day'].'</span></span>
-			<span class="element_conteiner"><span  class="hourse time_left">'.$hourse_left.'</span><span class="time_description">'.$parametrs['text_for_hour'].'</span></span>
-			<span class="element_conteiner"><span  class="minutes time_left">'.$minuts_left.'</span><span class="time_description">'.$parametrs['text_for_minut'].'</span></span>
-			<span class="element_conteiner"><span  class="secondes time_left">'.$seconds_left.'</span><span class="time_description">'.$parametrs['text_for_second'].'</span></span>
+			<span class="element_conteiner"><span  class="days time_left">'.$day_left.'</span><span class="time_description">'.esc_html($parametrs['text_for_day']).'</span></span>
+			<span class="element_conteiner"><span  class="hourse time_left">'.$hourse_left.'</span><span class="time_description">'.esc_html($parametrs['text_for_hour']).'</span></span>
+			<span class="element_conteiner"><span  class="minutes time_left">'.$minuts_left.'</span><span class="time_description">'.esc_html($parametrs['text_for_minut']).'</span></span>
+			<span class="element_conteiner"><span  class="secondes time_left">'.$seconds_left.'</span><span class="time_description">'.esc_html($parametrs['text_for_second']).'</span></span>
 		</div>';
 		$output_html.='</div>';
 		
