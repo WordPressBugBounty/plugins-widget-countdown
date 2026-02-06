@@ -48,7 +48,7 @@ class wpdevart_countdown_front_end{
 	public function wpdevart_wpdevart_countdown_shortcode( $atts,$content){
 		self::$id_for_content++;
 		$output_html='';
-		$curent_value= shortcode_atts( array(
+		$curent_value = shortcode_atts( array(
 			"text_for_day" 			=> __( "Days", "wpdevart_countdown" ), 
 			"text_for_hour"			=> __( "Hours", "wpdevart_countdown" ),
 			"text_for_minut"		=> __( "Minutes", "wpdevart_countdown" ),
@@ -98,10 +98,10 @@ class wpdevart_countdown_front_end{
 
 			
 			$output_html.='<div class="countdown">
-				<span class="element_conteiner"><span  class="days time_left">'.$day_left.'</span><span class="time_description">'.esc_html($curent_value['text_for_day']).'</span></span>
-				<span class="element_conteiner"><span  class="hourse time_left">'.$hourse_left.'</span><span class="time_description">'.esc_html($curent_value['text_for_hour']).'</span></span>
-				<span class="element_conteiner"><span  class="minutes time_left">'.$minuts_left.'</span><span class="time_description">'.esc_html($curent_value['text_for_minut']).'</span></span>
-				<span class="element_conteiner"><span  class="secondes time_left">'.$seconds_left.'</span><span class="time_description">'.esc_html($curent_value['text_for_second']).'</span></span>
+				<span class="element_conteiner"><span  class="days time_left">'.esc_html($day_left).'</span><span class="time_description">'.esc_html($curent_value['text_for_day']).'</span></span>
+				<span class="element_conteiner"><span  class="hourse time_left">'.esc_html($hourse_left).'</span><span class="time_description">'.esc_html($curent_value['text_for_hour']).'</span></span>
+				<span class="element_conteiner"><span  class="minutes time_left">'.esc_html($minuts_left).'</span><span class="time_description">'.esc_html($curent_value['text_for_minut']).'</span></span>
+				<span class="element_conteiner"><span  class="secondes time_left">'.esc_html($seconds_left).'</span><span class="time_description">'.esc_html($curent_value['text_for_second']).'</span></span>
 			</div>';
 		$output_html.='</div>';
 		$output_html.='<script>'.$this->wpdevart_countdown_javascript($curent_value).'</script><style>'.$this->wpdevart_countdown_css($curent_value).'</style>';
@@ -166,19 +166,19 @@ class wpdevart_countdown_front_end{
 	
 	public function wpdevart_countdown_css($parametrs_for_countedown){
 		$output_css='';
-		$output_css.='#main_countedown_'.self::$id_for_content.' .countdown{text-align:'.$parametrs_for_countedown['content_position'].';}';
-		$output_css.= '#main_countedown_'.self::$id_for_content.' .countdown{margin-top:'.$parametrs_for_countedown['top_ditance'].'px;margin-bottom:'.$parametrs_for_countedown['bottom_distance'].'px}';
+		$output_css.='#main_countedown_'.self::$id_for_content.' .countdown{text-align:'.esc_attr($parametrs_for_countedown['content_position']).';}';
+		$output_css.= '#main_countedown_'.self::$id_for_content.' .countdown{margin-top:'.esc_attr($parametrs_for_countedown['top_ditance']).'px;margin-bottom:'.esc_attr($parametrs_for_countedown['bottom_distance']).'px}';
 		$output_css.= "#main_countedown_".self::$id_for_content." .time_left{\r\n";
 		$output_css.= "border-radius:8px;\r\n";
 		$output_css.= "background-color:#3DA8CC;\r\n";
 		$output_css.= "font-size:23px;\r\n";
 		$output_css.= "font-family:monospace;\r\n";
-		$output_css.= "color:".$parametrs_for_countedown['font_color'].";\r\n";
+		$output_css.= "color:".esc_attr($parametrs_for_countedown['font_color']).";\r\n";
 		$output_css.= "}\r\n";
 		$output_css.= "#main_countedown_".self::$id_for_content." .time_description{\r\n";
 		$output_css.= "font-size:23px;\r\n";
 		$output_css.= "font-family:monospace;\r\n";
-		$output_css.= "color:".$parametrs_for_countedown['font_color'].";\r\n";
+		$output_css.= "color:".esc_attr($parametrs_for_countedown['font_color']).";\r\n";
 		$output_css.= "}\r\n";
 		$output_css.= "#main_countedown_".self::$id_for_content." .element_conteiner{min-width:90px}";
 			

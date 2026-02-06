@@ -542,9 +542,9 @@ die;
 			margin-top:15px;
 			position: relative;
 		}
-		.wpdevart_support:before {
+		.wpdevart_support::before {
 			content: "";
-			background: url(<?php echo esc_url($this->plugin_url) ?>images/support-white.png) no-repeat;
+			background: url("<?php echo esc_url($this->plugin_url); ?>images/support-white.png") no-repeat;
 			width: 25px;
 			height: 25px;
 			background-size: 25px;
@@ -587,12 +587,12 @@ die;
 		 <h2 style="font-size: 20px; text-align: center; ">Adding a countdown in post or page</h2><br>
 		 <div style="font-size:15px; text-align: center; max-width: 1024px; margin: 0 auto;">If you are using Classic Editor, then click on the shortcode button and set Countdown timer options, then click on the "Insert Countdown" button. Check the left screenshot below. If you are using Block-Enabled Editor, then click on the Plus button and open the Common Blocks tab, then click on WpDevArt countdown and configure settings. Check the right screenshot below.</div>
 		 <br/>
-		 <div style="text-align:center"><img class="image" style="max-width:35%;margin-right:10px;border: 1px solid #000000;" src="<?php echo $this->plugin_url.'images/clasic_editor_button_place.jpg' ?>"><img style="max-width:35%; border: 1px solid #000000;" class="image" src="<?php echo $this->plugin_url.'images/gutenberg_button_place.jpg' ?>"></div>
+		 <div style="text-align:center"><img class="image" style="max-width:35%;margin-right:10px;border: 1px solid #000000;" src="<?php echo esc_url($this->plugin_url.'images/clasic_editor_button_place.jpg') ?>"><img style="max-width:35%; border: 1px solid #000000;" class="image" src="<?php echo $this->plugin_url.'images/gutenberg_button_place.jpg' ?>"></div>
      </div>
      <div class="image_width_description">
 	 <h2 style="font-size: 20px; text-align:center;">Adding a countdown in a widget</h2><br>
      <div style="font-size:15px; text-align: center; max-width: 1024px; margin: 0 auto;">For adding a countdown timer into your website Sidebars go to your website Widgets page, pick and drop the Countdown widget into your sidebar. Then set the Countdown timer options, then save changes. Look at the screenshot below.</div><br>
-    	<div style="text-align:center"><img style="max-width:35%; border: 1px solid #000000;" class="image" src="<?php echo $this->plugin_url.'images/widget_place.jpg' ?>"></div>
+    	<div style="text-align:center"><img style="max-width:35%; border: 1px solid #000000;" class="image" src="<?php echo esc_url($this->plugin_url.'images/widget_place.jpg') ?>"></div>
     </div>
 
 	<?php 
