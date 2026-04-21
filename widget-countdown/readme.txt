@@ -4,7 +4,7 @@ Donate link: http://wpdevart.com/wordpress-countdown-plugin
 Tags: countdown, countdown widget, countdown timer,  countdown system, countdown generator
 Requires at least: 3.3.0
 Tested up to: 6.9.4
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -17,6 +17,8 @@ WordPress Countdown Plugin - Create and embed countdown timers in your posts, pa
 Designed to boost engagement and create urgency, the plugin allows you to easily display beautiful, animated timers for events, product launches, promotions, or special offers—without requiring any coding skills.
 
 With its intuitive interface, users can create and insert unlimited countdown timers into posts, pages, and widgets in just a few clicks. The plugin offers multiple timer types, including standard, circular, and vertical slider designs, giving you flexibility to match your site’s style. It also includes dozens of animation effects, allowing you to enhance visual appeal and capture visitors’ attention.
+
+https://www.youtube.com/watch?v=JJ2vsr5n-ao
 
 Fully responsive and optimized for all devices, the countdown timers look great on desktops, tablets, and mobile screens. You can customize various elements such as colors, fonts, sizes, and positioning, ensuring seamless integration with your website design. Additionally, the plugin lets you define actions after the timer expires—such as hiding the countdown or displaying a custom message—making it ideal for time-sensitive campaigns.
 
@@ -69,7 +71,7 @@ You can upgrade from the free version to [WordPress Countdown Premium](http://wp
 *   **Premium Support**
 *   **and much more...**
 
-### If you find a bug in our plugin or have a question, please contact us at support@wpdevart.com.
+**If you find a bug in our plugin or have a question, please contact us at support@wpdevart.com.**
 
 With the WpDevArt Countdown plugin, you can create a wide variety of themed and purpose-driven timers tailored to different occasions and campaigns. This includes festive countdowns for major holidays like Christmas, Halloween, and New Year’s, as well as promotional timers for sales events such as Black Friday or limited-time discounts. It’s equally effective for event-based countdowns like product launches, webinars, concerts, or registration deadlines. Users can also build evergreen timers for ongoing offers, personal milestone countdowns (birthdays, anniversaries), and even daily or weekly recurring timers. With full customization options, each countdown can be styled to match the mood of the occasion—whether it’s a festive holiday theme, a high-energy sales campaign, or a clean, professional event reminder.
 
@@ -141,6 +143,10 @@ This is a one-time payment, so you only need to pay once.
 5.  Back-end 
 
 == Changelog ==
+
+= 3.0.1 =
+
+*  Minor changes
 
 = 3.0.0 =
 
