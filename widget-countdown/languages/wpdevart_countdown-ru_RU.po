@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pricing Table\n"
-"POT-Creation-Date: 2021-03-31 12:54+0400\n"
-"PO-Revision-Date: 2021-03-31 12:55+0400\n"
+"POT-Creation-Date: 2021-03-31 13:02+0400\n"
+"PO-Revision-Date: 2021-03-31 13:03+0400\n"
 "Last-Translator: \n"
 "Language-Team: ru_RU\n"
 "Language: ru\n"
@@ -16,21 +16,41 @@ msgstr ""
 "X-Poedit-KeywordsList: __\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: includes/front_end.php:52 includes/widget.php:66
+#: includes/front_end.php:48 includes/widget.php:61
 msgid "Days"
 msgstr "Дни"
 
-#: includes/front_end.php:53 includes/widget.php:67
+#: includes/front_end.php:49 includes/widget.php:62
 msgid "Hours"
 msgstr "Часы"
 
-#: includes/front_end.php:54 includes/widget.php:68
+#: includes/front_end.php:50 includes/widget.php:63
 msgid "Minutes"
 msgstr "Минуты"
 
-#: includes/front_end.php:55 includes/widget.php:69
+#: includes/front_end.php:51 includes/widget.php:64
 msgid "Seconds"
 msgstr "Секунды"
+
+#, fuzzy
+#~| msgid "Minutes"
+#~ msgid "Minuts"
+#~ msgstr "Минуты"
+
+#, fuzzy
+#~| msgid "Hours"
+#~ msgid "hours"
+#~ msgstr "Часы"
+
+#, fuzzy
+#~| msgid "Minutes"
+#~ msgid "minutes"
+#~ msgstr "Минуты"
+
+#, fuzzy
+#~| msgid "Seconds"
+#~ msgid "seconds"
+#~ msgstr "Секунды"
 
 #~ msgid "Clear"
 #~ msgstr "Очистить"

@@ -1,0 +1,38 @@
+/*##########################################   THEME ISOLATION RESET ##########################################*/
+/* Neutralizes inherited styles from the surrounding WordPress theme (on the
+   frontend) or from the WP admin (on the theme-edit preview) so the countdown
+   renders identically in both contexts. Only resets "leaky" cosmetic
+   properties — layout values are set by per-theme inline CSS on top. */
+.wpdevart_countdown_standart,
+.wpdevart_countdown_standart *,
+#wpda_theme_preview,
+#wpda_theme_preview *{
+	line-height:normal;
+	letter-spacing:normal;
+	word-spacing:normal;
+	text-transform:none;
+	text-decoration:none;
+	text-shadow:none;
+	text-indent:0;
+	font-style:normal;
+	font-variant:normal;
+	font-stretch:normal;
+	box-shadow:none;
+	vertical-align:baseline;
+	box-sizing:content-box;
+	list-style:none;
+	outline:0;
+}
+
+/*##########################################   STANDARD ##########################################*/
+.wpdevart_countdown_standart{
+	text-align: center;
+}
+.wpdevart_countdown_element{
+	display: inline-block;
+}
+.wpdevart_countdown_standart .time_text,.wpdevart_countdown_standart .time_left_pro{
+	white-space: nowrap;
+	display: block;
+	border-style:solid;
+}

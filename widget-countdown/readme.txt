@@ -3,58 +3,79 @@ Contributors: wpdevart
 Donate link: http://wpdevart.com/wordpress-countdown-plugin
 Tags: countdown, countdown widget, countdown timer,  countdown system, countdown generator
 Requires at least: 3.3.0
-Tested up to: 6.9
-Stable tag: 2.7.9
+Tested up to: 6.9.4
+Stable tag: 3.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Countdown timer plugin is an nice tool to create and insert timers into your posts/pages and widgets. 
+WordPress Countdown Plugin - Create and embed countdown timers in your posts, pages, and widgets (integrated with WooCommerce and Elementor).
 
 == Description ==
 
-https://www.youtube.com/watch?v=fiTP-j8J1S4
+WordPress Countdown Plugin - Create and embed countdown timers in your posts, pages, and widgets (integrated with WooCommerce and Elementor). Our WordPress countdown plugin allows users to create beautiful and functional timers in just a few minutes.
 
-Our WordPress Countdown plugin allow website owners to create nice and functional timer just in a few minutes. This is the best way to create beautiful Timers for your users.
-You can use our plugin in your posts/pages and widgets. It's very easy to use and there isn't any need of coding knowledge.
+Designed to boost engagement and create urgency, the plugin allows you to easily display beautiful, animated timers for events, product launches, promotions, or special offers—without requiring any coding skills.
 
-### View our plugin Demo page: 
+With its intuitive interface, users can create and insert unlimited countdown timers into posts, pages, and widgets in just a few clicks. The plugin offers multiple timer types, including standard, circular, and vertical slider designs, giving you flexibility to match your site’s style. It also includes dozens of animation effects, allowing you to enhance visual appeal and capture visitors’ attention.
 
-*   [Circle Timer Demo](https://demo.wpdevart.com)
+Fully responsive and optimized for all devices, the countdown timers look great on desktops, tablets, and mobile screens. You can customize various elements such as colors, fonts, sizes, and positioning, ensuring seamless integration with your website design. Additionally, the plugin lets you define actions after the timer expires—such as hiding the countdown or displaying a custom message—making it ideal for time-sensitive campaigns.
 
-Our plugin have a lot of useful features that you will like. 
+### Our plugin Demo page: 
 
-### Features of Free version
+*   [Countdown Timer Demo](https://demo.wpdevart.com)
+
+Our plugin has two versions: free and premium. Let's take a look at the features of both versions and compare them.
+
+### Free version Features
 
 *   **Easy install and use**
 *   **Works perfectly with all versions of WordPress**
 *   **Fully Responsive**
 *   **Ability to create unlimited Timers**
 *   **Ability to use on pages/posts and widgets**
-*   **Ability to type your own text in day, hour, minute and second fields**
+*   **Time Zones (full list of ~100 timezones)**
 *   **Ability to select the action after time expired**
 *   **Ability to type message after time expired**
-*   **Ability to choose the position**
-*   **Ability to type the distance from top/bottom**
-*   **Uses CSS3**
+*   **Countdown position (left/center/right)**
+*   **Countdown width (px / %)**
+*   **"Classic B&W" theme**
+*   **WooCommerce integration**
+*   **Elementor integration**
+*   **Gutenberg block**
+*   **Supports Legacy Gutenberg**
+*   **Supports Classic Editor**
 *   **User friendly back-end**
 *   **Tested on popular WordPress themes**
 
-You can upgrade the free version to [WordPress Countdown Pro](http://wpdevart.com/wordpress-countdown-plugin/) to add some features.
+You can upgrade from the free version to [WordPress Countdown Premium](http://wpdevart.com/wordpress-countdown-plugin/) to access some features.
 
-### The features of Pro version
+### Premium version features
 
-*   **Ability to use Timer with "Circle" and "Vertical Slider" buttons**
-*   **Ability to choose the text color**
-*   **Ability to choose the background color**
-*   **Ability to type the size**
-*   **Ability to type the border width and radius**
-*   **Ability to type the text font-size and Font family**
-*   **39 awesome animation effects**
+*   **40 Premium themes (10 Standard + 10 Vertical + 10 Circle + 10 Flip)**
+*   **Count up, Evergreen countdown, Evergreen count up**
+*   **Countdown repeat: Restart after ends, Every X hours, Daily, Weekly, Monthly**
+*   **All evergreen settings (duration, expire mode, restart behavior, daily expire time)**
+*   **All repeat settings (interval, day-of-week, day-of-month, stop conditions)**
+*   **After timer expires: Redirect to URL, Show button, Hide page content, Show hidden content (free only gets Hide / Show text)**
+*   **Select the countdown timer fields you want to display (free is locked to Days / Hours / Minutes / Seconds)**
+*   **Display elements inline (Fit on one row) — responsive auto-scaling**
+*   **Set animation for each element or for group**
+*   **Animation Effect (fadeIn, bounceIn, flipIn, rotateIn, and 25+ more)**
+*   **Vertical — full settings (slide-digit animation)**
+*   **Circle — full settings (SVG ring animation)**
+*   **Flip Clock — full settings (3D flap animation)**
+*   **Popup timers (size, position, fixed/absolute, background, border, animation)**
+*   **Sticky Bar timers**
 *   **Premium Support**
+*   **and much more...**
 
-### If you found any bug in our plugin or have a question contact us at support@wpdevart.com.
+### If you find a bug in our plugin or have a question, please contact us at support@wpdevart.com.
 
-Our plugin have a lot of nice features, be sure you checked them all(date timer, time counter, clock, html5, flash, jQuery, animated, Holiday, Christmas and Halloween timers).   
+With the WpDevArt Countdown plugin, you can create a wide variety of themed and purpose-driven timers tailored to different occasions and campaigns. This includes festive countdowns for major holidays like Christmas, Halloween, and New Year’s, as well as promotional timers for sales events such as Black Friday or limited-time discounts. It’s equally effective for event-based countdowns like product launches, webinars, concerts, or registration deadlines. Users can also build evergreen timers for ongoing offers, personal milestone countdowns (birthdays, anniversaries), and even daily or weekly recurring timers. With full customization options, each countdown can be styled to match the mood of the occasion—whether it’s a festive holiday theme, a high-energy sales campaign, or a clean, professional event reminder.
+
+### Our Countdown old version:
+
+https://www.youtube.com/watch?v=fiTP-j8J1S4
 
 == Installation ==
 
@@ -65,28 +86,31 @@ Our plugin have a lot of nice features, be sure you checked them all(date timer,
 3. Then click "Choose file" then select the plugin zip file. 
 4. Install and activate our plugin.     
 	  
-That's all, now you can use it on your website. If any problem occurs, contact us at [support@wpdevart.com](mailto:support@wpdevart.com).
+That's it, now you can use it on your website. If you have any problems, contact us at: [support@wpdevart.com](mailto:support@wpdevart.com).
 
 == Frequently Asked Questions ==
 
-Our plugin is user friendly, but here you can see some frequently asked questions that can help you.
+Our plugin is easy to use, but here you can find some frequently asked questions that might help you.
 
 = How can I insert it into my pages/posts =
 
-After you installed the plugin you can go to your pages/posts and just click on our plugin shortcode button and add it to your pages/posts.
+Once you install the plugin, you can go to your pages/posts and add it using the Gutenberg block, Elementor widget, or the classic editor.
 
 = How can I add it into my sidebars =
 
 After you installed the plugin you need to check your widgets page and then drag and drop our plugin widget into your sidebar.
-After that configure the options.
 
 = Can I select the expire date from calendar =
 
-Yes dear user, you can use our date picker from calendar.
+Yes, you can use our date picker from calendar.
 
-= Can I use it in popup =
+= Can I use it in Popup =
 
-Unfortunately we don't have popup option, but you can use it with other popup plugin.
+The popup feature is only available in the premium version and is not available in the free version.
+
+= Can I use the Sticky Bar feature =
+
+The Sticky Bar feature is only available in the premium.
 
 = I select date using date picker but it doesn't show the correct time that left =
 
@@ -94,23 +118,19 @@ The plugin use the website server time, that's why you see other time in front e
 
 = I Have troubles with circle view =
 
-Dear user, contact us at support@wpdevart.com and we will fix it, usually the problem comes from jQuery version or one of your plugins.
-
-= Can I remove for example hours field =
-
-Unfortunately we don't have such feature at this moment, but contact us at support@wpdevart.com and we will try to help you. 
+Contact us at support@wpdevart.com and we will fix it. Typically the issue is related to your jQuery version or a conflict with your plugins.
 
 = What files I need to upload for installing the plugin =
 
-You need to select the .zip file, there is no need to extract the zip file, just upload it.
+You need to select the .zip file. There is no need to extract the zip file, just upload it.
 
-= I purchased the pro version, but didn't download the pro file =
+= I bought the premium version, but I didn't receive it. =
 
-Contact us at support@wpdevart.com and we will send you the pro version.
+Contact us at support@wpdevart.com and we will send you the premium version.
 
-= The pro version is one time pay or not =
+= The premium version is paid for one-time or annually =
 
-Yes dear users, you need to pay only one time for pro version, it's lifetime plan.
+This is a one-time payment, so you only need to pay once.
 
 == Screenshots ==
 
@@ -122,37 +142,41 @@ Yes dear users, you need to pay only one time for pro version, it's lifetime pla
 
 == Changelog ==
 
+= 3.0.0 =
+
+*  Many great features have been added
+
 = 2.7.9 =
 
-*  admin UI changes.
+*  Admin UI changes.
 
 = 2.7.8 =
 
-*  security bug fixed.
+*  Security bug fixed.
 
 = 2.7.7 =
 
-*  code improved.
+*  Code improved.
 
 = 2.7.6 =
 
-*  tested.
+*  Tested.
 
 = 2.7.5 =
 
-*  bug fixed.
+*  Bug fixed.
 
 = 2.7.4 =
 
-*  bug fixed.
+*  Bug fixed.
 
 = 2.7.3 =
 
-*  bugs fixed.
+*  Bugs fixed.
 
 = 2.7.2 =
 
-*  bug fixed.
+*  Bug fixed.
 
 = 2.7.1 =
 
@@ -761,33 +785,14 @@ Yes dear users, you need to pay only one time for pro version, it's lifetime pla
 
 == Step by step guide ==
 
-### Options
+### Adding a countdown timer to your website's pages and posts
 
-*   Day field text - Type here text for Day field.
-*   Hour field text - Type here text for Hour field.
-*   Minute field text - Type here text for Minute field.
-*   Second field text - Type here text for Second field.
-*   Expire time/date - Type the expire time or select it from calendar.
-*   After time expired - Select the action after time expired.
-*   Message after time expired - Type the message after time expired. 
-*   Position - Select the position.
-*   Distance from top - Type the distance from top.
-*   Distance from bottom - Type the distance from bottom.
-*   Buttons type - Select the buttons type.
-*   Text color - Choose the text color.
-*   Background color - Choose the background color.
-*   Size - Type the size.
-*   Border width - Type the border width(px).
-*   Border radius - Type the border radius(px).
-*   Font-size - Type the texts font-size(px).
-*   Font family - Choose the Font family.
-*   Animation type - Choose the animation type you need.
+After installation, activate the plugin, then go to your pages or posts and simply click our plugin's shortcode button to add it to your pages or posts.
 
-### Adding timer into your website pages, posts
+If you are using Gutenberg, search for WpDevArt Countdown and use one of the two blocks.
 
-After installation activate the plugin, then go to your pages, posts and just click on our plugin shortcode button and add it to your pages/posts.
+If you are using Elementor, then you need to search for our countdown widget.
 
-### Adding in your website sidebar
+### Adding a countdown widget to your site's sidebar
 
-After installation activate the plugin, then check your widgets page(Appearance>Widgets) and then drag and drop our plugin widget into your sidebar.
-After that configure the options. That's all.
+After installation, activate the plugin, then go to the widgets page (Appearance > Widgets) and drag our plugin's widget to your sidebar. Then select a timer and theme.
